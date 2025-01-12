@@ -1,0 +1,779 @@
+_type: export
+__export_format: 4
+__export_date: 2025-01-12T04:15:02.501Z
+__export_source: insomnia.desktop.app:v10.3.0
+resources:
+  - _id: req_601ef16928ab4ea4b7068f99c6459e96
+    parentId: fld_199ea33e9da649a5b946a841c9d6676b
+    modified: 1736617118730
+    created: 1736481535508
+    url: http://localhost:8081/classification_rules/save
+    name: POST new classification rule 1
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >
+        {
+          "name": "Rule for Female Members in California with Age Between 18 and 30",
+          "rule": {
+            "member": {
+              "gender": {"equals": "FEMALE"},
+              "state": {"equals": "CA"},
+              "age": {"between": {"start": 18, "end": 30}}
+            }
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616969440
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_199ea33e9da649a5b946a841c9d6676b
+    parentId: fld_1ff6de83a4da492e850b9a0a4826b6f3
+    modified: 1736616949644
+    created: 1736616949644
+    name: ClassificationRulesControllerEndpoints
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1736616949644
+    environmentType: kv
+    _type: request_group
+  - _id: fld_1ff6de83a4da492e850b9a0a4826b6f3
+    parentId: wrk_4f8a30e97f47433792693d149ab5288b
+    modified: 1736426878419
+    created: 1736426878419
+    name: MemberClassifier
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1736426878419
+    environmentType: kv
+    _type: request_group
+  - _id: wrk_4f8a30e97f47433792693d149ab5288b
+    parentId: null
+    modified: 1734786392285
+    created: 1648218255070
+    name: MyTestingEndpoints
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_9831ddeb1998431fb4b0611b9ee8e985
+    parentId: fld_199ea33e9da649a5b946a841c9d6676b
+    modified: 1736650025731
+    created: 1736486241944
+    url: http://localhost:8081/classification_rules/save
+    name: POST new classification rule 2
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "name": "Daily Exercise promotion members",
+          "rule": {
+        			"member": {
+        				"age": {"gt": 40}
+        			},
+
+        			"healthStatus": {
+        				"bmi": {"gte": 20},
+        				"chronicConditions": {"isIn": ["ARTHRITIS", "HYPERTENSION"]}	
+        			}	
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616969340
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2703f0102dc4456785e7a26748f913a7
+    parentId: fld_199ea33e9da649a5b946a841c9d6676b
+    modified: 1736622286395
+    created: 1736602676104
+    url: http://localhost:8081/classification_rules/save
+    name: POST new classification rule 3
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "name": "Rule for Artheritis and Hypertension members",
+          "rule": {
+            "healthStatus": {
+              "chronicConditions": {
+                "isIn": ["ARTHRITIS", "HYPERTENSION"]
+              }
+            }
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616969290
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b576a205f12a46aa82966e9288c9b1af
+    parentId: fld_199ea33e9da649a5b946a841c9d6676b
+    modified: 1736654340963
+    created: 1736623632192
+    url: http://localhost:8081/classification_rules/save
+    name: POST new classification rule 4
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "name": "Members with no Artheritis and Hypertension",
+          "rule": {
+        			"not": {
+        				 "healthStatus": {
+        						"chronicConditions": {"isIn": ["ARTHRITIS", "HYPERTENSION"]}
+        					}
+        			}
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616969265
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6c7a58a745c1496e8ad682781c7a3ff1
+    parentId: fld_199ea33e9da649a5b946a841c9d6676b
+    modified: 1736653959991
+    created: 1736616251784
+    url: http://localhost:8081/classification_rules/update
+    name: POST update classification rule 1
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+        	"ruleId": 2,
+          "name": "Rule for Female age >40 or Male Members age>30",
+          "rule": {
+        		"or": [
+        			{
+        				"member": {
+        					"gender": {"equals": "FEMALE"},
+        					"age": {"gt": 40}
+            		}
+        			},
+        			{
+        				"member": {
+        					"gender": {"equals": "MALE"},
+        					"age": {"gt" : 30}
+            		}
+        			}
+        		]	
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616969240
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c14164964ccb453c88c249d0fc8e4fae
+    parentId: fld_199ea33e9da649a5b946a841c9d6676b
+    modified: 1736653833428
+    created: 1736616007824
+    url: http://localhost:8081/classification_rules/update
+    name: POST update classification rule 2
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"ruleId": 11,
+          "name": "Rule for Artheritis and Hypertension members",
+          "rule": {
+            "healthStatus": {
+              "chronicConditions": {
+                "isIn": ["ARTHRITIS", "HYPERTENSION"]
+              }
+            }
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616969140
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8ad922285d5141a19c0352a5b4b9ac68
+    parentId: fld_199ea33e9da649a5b946a841c9d6676b
+    modified: 1736654355797
+    created: 1736602512148
+    url: http://localhost:8081/classification_rules/13/members
+    name: GET members by classification rule id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616969040
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_137275de382f45dab108304b3e74f773
+    parentId: fld_199ea33e9da649a5b946a841c9d6676b
+    modified: 1736616975097
+    created: 1736481496105
+    url: http://localhost:8081/classification_rules/all
+    name: GET classification rules
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616968840
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8833bea9b0a144d9b9fbdc3390595cd3
+    parentId: fld_ee3884a466f84072b70f2cd468753502
+    modified: 1736616925726
+    created: 1736615905681
+    url: http://localhost:8081/members/save
+    name: POST  new member4
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name" : "Jenna Goldberg",
+        	"gender": "FEMALE",
+        	"address": {
+        		"street" : "234",
+        		"city" : "Bra",
+        		"state": "CA",
+        		"zipCode": "23456"
+        	},
+        	"dateOfBirth": "1990-01-31",
+        	"contacts": [
+        		{
+        			"type": "EMAIL",
+        			"value": "jenna.goldberg@gmail.com"
+        		}
+        	],
+        	"healthStatus": {
+        		"generalHealthRating": "POOR",
+        		"mentalHealthStatus": "UNDER_TREATMENT",
+        		"height": 156,
+        		"weight": 91,
+        		"bloodPressure": "160/90",
+        		"heartRate": "76",
+        		"cholesterolLevel": "NORMAL",
+        		"stressLevel": "HIGH",
+        		"chronicConditions": ["ARTHRITIS"],
+        		"mentalHealthHistory": [ "DEPRESSION"]
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616910681
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_ee3884a466f84072b70f2cd468753502
+    parentId: fld_1ff6de83a4da492e850b9a0a4826b6f3
+    modified: 1736616885427
+    created: 1736616885427
+    name: memberControllerEndpoints
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1736616885427
+    environmentType: kv
+    _type: request_group
+  - _id: req_52078fb882764415bd61ec64bb3e79fc
+    parentId: fld_ee3884a466f84072b70f2cd468753502
+    modified: 1736616922738
+    created: 1736615793623
+    url: http://localhost:8081/members/save
+    name: POST  new member3
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name" : "Jill Smith",
+        	"gender": "FEMALE",
+        	"address": {
+        		"street" : "123",
+        		"city" : "Bra",
+        		"state": "GA",
+        		"zipCode": "12323"
+        	},
+        	"dateOfBirth": "1990-10-31",
+        	"contacts": [
+        		{
+        			"type": "EMAIL",
+        			"value": "jill.smith@gmail.com"
+        		}
+        	],
+        	"healthStatus": {
+        		"generalHealthRating": "POOR",
+        		"mentalHealthStatus": "UNDER_TREATMENT",
+        		"height": 156,
+        		"weight": 91,
+        		"bloodPressure": "150/90",
+        		"heartRate": "76",
+        		"cholesterolLevel": "NORMAL",
+        		"stressLevel": "HIGH",
+        		"chronicConditions": ["ARTHRITIS", "HYPERTENSION"],
+        		"mentalHealthHistory": [ "DEPRESSION"]
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616910581
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_313c3a9af53c435e81da5e4514cf1f5d
+    parentId: fld_ee3884a466f84072b70f2cd468753502
+    modified: 1736616920096
+    created: 1736443351865
+    url: http://localhost:8081/members/save
+    name: POST  new member2
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name" : "John Doe",
+        	"gender": "MALE",
+        	"address": {
+        		"street" : "456",
+        		"city" : "HelloCity",
+        		"state": "CA",
+        		"zipCode": "54345"
+        	},
+        	"dateOfBirth": "1982-10-31",
+        	"contacts": [
+        		{
+        			"type": "EMAIL",
+        			"value": "john.doe@gmail.com"
+        		}
+        	],
+        	"healthStatus": {
+        		"generalHealthRating": "POOR",
+        		"mentalHealthStatus": "UNDER_TREATMENT",
+        		"height": 156,
+        		"weight": 91,
+        		"bloodPressure": "150/90",
+        		"heartRate": "72",
+        		"cholesterolLevel": "NORMAL",
+        		"stressLevel": "HIGH",
+        		"chronicConditions": ["ARTHRITIS", "HYPERTENSION"],
+        		"mentalHealthHistory": [ "DEPRESSION"]
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616910481
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_167e6434159144ac922383103522894f
+    parentId: fld_ee3884a466f84072b70f2cd468753502
+    modified: 1736617100594
+    created: 1736427824616
+    url: http://localhost:8081/members/save
+    name: POST  new member1
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name" : "Tina Doe",
+        	"gender": "FEMALE",
+        	"address": {
+        		"street" : "123",
+        		"city" : "TinaCity",
+        		"state": "CA",
+        		"zipCode": "5412345345"
+        	},
+        	"dateOfBirth": "1981-01-01",
+        	"contacts": [
+        		{
+        			"type": "PHONE",
+        			"value": "123-456-7890"
+        		}
+        	],
+        	"healthStatus": {
+        		"generalHealthRating": "FAIR",
+        		"mentalHealthStatus": "COPING_WELL",
+        		"height": 156,
+        		"weight": 91,
+        		"bloodPressure": "120/80",
+        		"heartRate": "72",
+        		"cholesterolLevel": "BORDERLINE",
+        		"stressLevel": "LOW",
+        		"chronicConditions": [
+        				"DIABETES",
+        				"ASTHMA"
+        			],
+        		"mentalHealthHistory": []
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616910431
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f02fe145d03149659fc4f0c4aaa9364e
+    parentId: fld_ee3884a466f84072b70f2cd468753502
+    modified: 1736616915658
+    created: 1736427718477
+    url: http://localhost:8081/members/1/info
+    name: GET member by id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616910381
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7ab496496838435387179a360b0a06f0
+    parentId: fld_ee3884a466f84072b70f2cd468753502
+    modified: 1736616912993
+    created: 1736443511305
+    url: http://localhost:8081/members/all
+    name: GET all members
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616910281
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2808936de6a7485a90fac4389b49fd48
+    parentId: fld_8024179bd67147a6aec1a5c4951b8be7
+    modified: 1736616865405
+    created: 1736448352800
+    url: http://localhost:8081/health/cholesterol_levels
+    name: Get all cholesterol levels
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616861711
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_8024179bd67147a6aec1a5c4951b8be7
+    parentId: fld_1ff6de83a4da492e850b9a0a4826b6f3
+    modified: 1736616851485
+    created: 1736616851485
+    name: healthControllerEndpoints
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1736616851486
+    environmentType: kv
+    _type: request_group
+  - _id: req_f48767ac176d4d3695663bfe699a5e83
+    parentId: fld_8024179bd67147a6aec1a5c4951b8be7
+    modified: 1736616861730
+    created: 1736448257918
+    url: http://localhost:8081/health/stress_levels
+    name: Get all stress levels
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736616861611
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7fc4226fa13849ebb06ce5092328f443
+    parentId: fld_1ff6de83a4da492e850b9a0a4826b6f3
+    modified: 1736427635768
+    created: 1736426992758
+    url: http://localhost:8081/actuator
+    name: Actuator
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736426992758
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_767e36246bac4cf2a5e8f3ca49b988e1
+    parentId: fld_1ff6de83a4da492e850b9a0a4826b6f3
+    modified: 1736436303108
+    created: 1736436298849
+    url: http://localhost:8081/actuator/health
+    name: Actuator/Health
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736426970563.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1a39f6e80f4043e59ef6933b78d4cc6f
+    parentId: fld_1ff6de83a4da492e850b9a0a4826b6f3
+    modified: 1736427678035
+    created: 1736427645819
+    url: http://localhost:8081/members/healthcheck
+    name: healthcheck
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/10.3.0
+    authentication: {}
+    metaSortKey: -1736426948369
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_3c446eb7eb49f542adb4c056de2c19704a9510e2
+    parentId: wrk_4f8a30e97f47433792693d149ab5288b
+    modified: 1648218255084
+    created: 1648218255084
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1648218255084
+    _type: environment
+  - _id: jar_3c446eb7eb49f542adb4c056de2c19704a9510e2
+    parentId: wrk_4f8a30e97f47433792693d149ab5288b
+    modified: 1648218255087
+    created: 1648218255087
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_a8bd00e5b784463ca94cd98c36499aba
+    parentId: wrk_4f8a30e97f47433792693d149ab5288b
+    modified: 1734786392284
+    created: 1648218255080
+    fileName: MyTestingEndpoints
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: uts_677e895577534cc68c8f0dc6d6cbf852
+    parentId: wrk_4f8a30e97f47433792693d149ab5288b
+    modified: 1648218255092
+    created: 1648218255092
+    name: Example Test Suite
+    metaSortKey: -1736655302585
+    _type: unit_test_suite

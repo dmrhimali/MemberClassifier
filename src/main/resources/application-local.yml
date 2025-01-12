@@ -1,0 +1,46 @@
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd
+    time-zone: UTC
+  flyway:
+    enabled: true
+    debug: true
+    clean-disabled: false
+    locations: classpath:db/migration,classpath:db/migration/local
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.jdbc.batch_size: 20
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_structured_entries: false
+      hibernate.cache.use_minimal_puts: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/memberDb
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driverClassName: org.postgresql.Driver
+  logging:
+    level:
+      org.springframework: INFO
+      org.springframework.jdbc.datasource.DriverManagerDataSource: DEBUG
+      org.springframework.boot.autoconfigure.jdbc: DEBUG
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+      org.hibernate.tool.schema: DEBUG
