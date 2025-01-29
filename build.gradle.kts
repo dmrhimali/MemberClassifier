@@ -80,5 +80,5 @@ flyway {
 }
 
 springBoot {
-	mainClass.set("com.dmrhimali.MemberClassifierApplication")
+	mainClass.set("com.dmrhimali.memberClassifier.MemberClassifierApplicationKt")
 }

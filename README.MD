@@ -1,7 +1,7 @@
 ## REst API for Member Classification
 
 
-This project will store member details and member classification definitions(segmentation rules) in a postgresql database. 
+This project will store member health related details and member classification definitions(segmentation rules) in a postgresql database. 
 For  example, a sample segmentation rule is men and women who have bmi > 25 and age between 30 and 45.
 The queries cannot be predefined in the repository as the segmentation rules are dynamic and subjected to change.
 
@@ -9,7 +9,82 @@ this project develop REST api endpoints that allow creating members, classificat
 
 I have come up wth a generic json structure that allows users to specify queries and backend services will convert them to SQL queries dynamically.
 
-See [insomnia endpoint list](Insomnia_member_classifier_endpoints.yaml) for tring out the project.
+For example if we save a json query in database (`/classification_rules/save`) , upon executing `/classification_rules/{rule_id}/members` the query will be dynamically converted to SQL query and executed agains database and results will be returned :
+
+save a json query `POST http://localhost:8081/classification_rules/save`:
+
+```json
+{
+  "name": "Rule for Female or Male Members in California with Age Between 18 and 30",
+  "rule": {
+		"or": [
+			{
+				"member": {
+					"gender": {"equals": "FEMALE"},
+					"state": {"equals": "CA"},
+					"age": {"between": {"start": 18, "end": 30}}
+    		}
+			},
+			{
+				"member": {
+					"gender": {"equals": "MALE"},
+					"state": {"equals": "CA"},
+					"age": {"between": {"start": 18, "end": 30}}
+    		}
+			}
+		]	
+	}
+}
+```
+
+execute a query and get matching members `GET http://localhost:8081/classification_rules/13/members`:
+
+response:
+```json
+{
+	"success": true,
+	"data": [
+		{
+			"memberId": 1,
+			"name": "Tina Doe",
+			"gender": {
+				"id": 2,
+				"type": "FEMALE",
+				"description": "Female Gender"
+			},
+			"age": 44,
+			"dateOfBirth": "1981-01-01",
+			"healthStatus": {
+				"generalHealthRating": {
+					"id": 3,
+					"type": "FAIR",
+					"description": "Some health problems affecting quality of life"
+				},
+				"mentalHealthStatus": {
+					"id": 1,
+					"type": "COPING_WELL",
+					"description": "Currently coping well with mental health"
+				},
+				"height": 156.0,
+				"weight": 91.0,
+				"bmi": 37.4,
+				"bloodPressure": "120/80",
+				"cholesterolLevel": "BORDERLINE",
+				"stressLevels": "LOW",
+				"chronicConditions": [
+					"DIABETES",
+					"ASTHMA"
+				],
+				"mentalHealthHistory": []
+			}
+		}
+	],
+	"error": null
+}
+```
+
+
+See [insomnia endpoint list](Insomnia_member_classifier_endpoints.yaml) for trying out the full list of endpoints.
 
 ## Quick guide
 
@@ -21,9 +96,9 @@ See [insomnia endpoint list](Insomnia_member_classifier_endpoints.yaml) for trin
 
 ### 3. try some endpoints:
 import [insomnia endpoint list](Insomnia_member_classifier_endpoints.yaml) to insomnia and:
-- create few members: `POST http://localhost:8081/members/save`
-- create few classifiers: `POST http://localhost:8081/classification_rules/save`
-- get members in a classifier `GET http://localhost:8081/classification_rules/13/members`
+- create a member: `POST http://localhost:8081/members/save`
+- create a classifier: `POST http://localhost:8081/classification_rules/save`
+- get members for  a classifier `GET http://localhost:8081/classification_rules/{ruleId}/members`
 
 
 ## Setup project
