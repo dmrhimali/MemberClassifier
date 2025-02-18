@@ -48,6 +48,17 @@ class MemberClassificationController(
         return ResponseEntity.ok(ApiResponse(success = true, data = classificationRuleResponses))
     }
 
+    @GetMapping("/{ruleId}")
+    fun geClassificationRuleById(@PathVariable ruleId: Long) : ResponseEntity<ApiResponse<ClassificationRuleResponse>> {
+        return try {
+            var memberResponsesList = classificationService.getClassificationRuleById(ruleId)
+            ResponseEntity.ok(ApiResponse(success = true, data = memberResponsesList))
+        } catch (e: ClassificationRuleNotFoundException) {
+            val errorResponse = handleClassificationRuleNotFoundException(e)
+            ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse(success = false, error = errorResponse))
+        }
+    }
+
     @GetMapping("/{ruleId}/members")
     fun getMembersByClassificationRule(@PathVariable ruleId: Long): ResponseEntity<ApiResponse<List<MemberResponse>>> {
         return try {

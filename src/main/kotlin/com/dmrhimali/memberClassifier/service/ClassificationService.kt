@@ -13,6 +13,7 @@ import com.dmrhimali.memberClassifier.util.JsonParser
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import jakarta.persistence.Query
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -50,6 +51,17 @@ class ClassificationService(
         }
     }
 
+
+    fun getClassificationRuleById(id: Long): ClassificationRuleResponse {
+        val existingClassificationRule = classificationRulesRepository.findById(id)
+            .orElseThrow { ClassificationRuleNotFoundException("Classification rule with id $id not found.")}
+
+        return ClassificationRuleResponse(
+            ruleId = existingClassificationRule.id,
+            name = existingClassificationRule.name,
+            rule = existingClassificationRule.rule
+        )
+    }
 
     fun updateClassificationRule(classificationRuleRequest: ClassificationRuleRequest): ClassificationRuleResponse{
         if(classificationRuleRequest.ruleId==null) {
